@@ -46,13 +46,33 @@
 Este informe se hace con la intención de mostrar el análisis y diseño del problema planteado para el parcial 2 de la materia Informática 2. En él se podrán encontrar las tareas que parecen ser necesarias en la solución del problema, las consideraciones a tener en cuenta para lograr una implementación exitosa y el algoritmo que se diseñará sin tener encuenta el lenguaje de programación y que servirá para la futura codificación del sistema solicitado. 
 
 \section{Análisis del problema} \label{contenido}
-El principal objetivo en este ejercicio es encontrar la forma de reducir o aumentar el tamaño de cualquier imagen al deseado (16x16) que es el tamaño que se escogió implementar para la matriz de LEDs simulada en Tinkercad con la ayuda de arduino.
+En esta ocación el problema planteado es hallar la forma de tomar una imagen cualquiera, en este caso las imágenes serían de banderas de los países del mundo, y procesarla de tal forma que los colores de esta imagen se vean representados en una matriz de LEDs que será simulada con ayuda de Tinkercad.
+
+\begin{figure}[h]
+\includegraphics[width=10cm]{punto1banderas.png}
+\centering
+\caption{Ejemplo de representación.}
+\label{fig:punto1}
+\end{figure}
+
+El programa recibirá la ubicación de la imagen de la bandera, la cual podrá tener cualquier tamaño, y después de hacer el debido procesamiento de esta, tendrá como salida un archivo de texto en el que se escribirá el código que debe ser utilizado en el controlador de la matriz que será copiado y pegado del archivo txt al programa en Tinkercad y que finalmente, al simular, se vea representada la imagen deseada por el usuario.
+
+Para este cometido se tendrán que utilizar los conceptos vistos hasta el momento, como el manejo de archivos para lectura y escritura, la creación de clases y objetos, la noción de herencia y el montaje de circuitos haciendo uso del Arduino en el programa de modelado 3D Tinkercad.
+
+Teniendo en cuenta que es permitido usar la clase QImage, la cual se encarga de manipular y proporcionar acceso a los pixeles de cualquier imagen, permitiendo de esta forma conocer la composición del color de cada pixel de la imagen suministrada por el usuario utilizando el modelo RGB, el principal objetivo en este ejercicio es encontrar la forma de reducir o aumentar el tamaño de cualquier imagen al deseado (16x16) que es el tamaño que se escogió implementar para la matriz de LEDs.
+
+Por último, es importante que el segmento de código necesario para rellenar la matriz de LEDs con los colores correspondientes a la imagen, y que es proporcionado por el programa implementado en Qt, sea escrito de una forma en la que sea fácil de copiar en el programa que controla la matriz, para así evitar errores en la simulación y que no sea posible visualizar los colores en los LEDs.
 
 
 \subsection{Clases implementadas}
 
 
 \section{Tareas para la solución del problema} \label{tareas}
+\begin{enumerate}
+\item 
+
+
+\end{enumerate}
 
 \section{Algoritmo diseñado} \label{algorimo}
 
