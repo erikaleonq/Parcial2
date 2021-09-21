@@ -3,9 +3,12 @@
 \usepackage[spanish]{babel}
 \usepackage{listings}
 \usepackage{graphicx}
+\usepackage{geometry}
 \graphicspath{ {images/} }
 \usepackage{cite}
 
+\geometry{
+textheight=23cm}
 \begin{document}
 
 \begin{titlepage}
@@ -65,25 +68,34 @@ Por último, es importante que el segmento de código necesario para rellenar la
 
 
 \subsection{Clases implementadas}
-
-
-\section{Tareas para la solución del problema} \label{tareas}
 \begin{enumerate}
-\item Entender el funcionamiento y las variedades de métodos de la clase QImage, la cual nos permitirá tener acceso a los pixeles de la imagen que queramos procesar, y de esta forma conocer la composición de color de estos.
-\item Idear una forma de minimizar o maximizar el tamaño de la imagen original dependiendo de sus dimensiones para que se convierta en una imagen de 16x16
+\item Clase MatrizRGB: clase para mostrar las matrices que hacen parte de RGB
+\item Clase newMatriz: Rellenar matriz redimensionada con nuevos valores
 
 
 \end{enumerate}
 
-\section{Algoritmo diseñado} \label{algorimo}
+\section{Tareas para la solución del problema} \label{tareas}
+\begin{enumerate}
+\item Entender el funcionamiento y las variedades de métodos de la clase QImage, la cual nos permitirá tener acceso a los pixeles de la imagen que queramos procesar, y de esta forma conocer la composición de color de estos.
+\item Conocer el manejo de archivos
+\item Idear una forma de minimizar o maximizar el tamaño de la imagen original dependiendo de sus dimensiones para que se convierta en una imagen de 16x16
+\item Realizar el montaje de la matriz de LEDs en Tinkercad
+\item Codigo tinkercad
 
+
+\end{enumerate}
+
+\newpage
+\section{Algoritmo diseñado} \label{algorimo}
 \begin{figure}[h]
-\includegraphics[width=10cm]{algoritmo.png}
+\includegraphics[width=15cm]{algoritmo.png}
 \centering
 \caption{Algoritmo inicial.}
 \label{fig:algoritmo}
 \end{figure}
 
+\newpage
 \section{Consideraciones finales} \label{consideracionesfinales}
 
 
