@@ -66,11 +66,17 @@ Teniendo en cuenta que es permitido usar la clase QImage, la cual se encarga de 
 
 Por último, es importante que el segmento de código necesario para rellenar la matriz de LEDs con los colores correspondientes a la imagen, y que es proporcionado por el programa implementado en Qt, sea escrito de una forma en la que sea fácil de copiar en el programa que controla la matriz, para así evitar errores en la simulación y que no sea posible visualizar los colores en los LEDs.
 
+\subsection{Consideraciones iniciales}
+
+Se debe tener en cuenta, según las restricciones, que no es permitido utilizar librerías para hacer el submuestreo o sobremuestreo de la imagen, se deberá desarrollar el código que nos permite minimizar o maximizar la imagen según lo requerido para que las nuevas matrices RGB tengan un tamaño de 16x16 y puedan ser mostradas en la matriz de LEDs montada en Tinkercad.
+
+
+
 
 \subsection{Clases implementadas}
 \begin{enumerate}
-\item Clase MatrizRGB: clase para mostrar las matrices que hacen parte de RGB
-\item Clase newMatriz: Rellenar matriz redimensionada con nuevos valores
+\item Clase MatrizRGB: Esta clase será la encargada de recibir la dirección de imagen ingresada por el usuario, y con está, obtener ancho y alto de la imagen y devolver una matriz [ 3 ][ ancho ][ alto] que tendrá toda la información correspondiente a los componentes R, G, B de cada pixel de la imagen suministrada.
+\item Clase newMatriz: Será la encargada de tomar los valores de cada pixel extraídos en las iteraciones sobre la MatrizRGB y según condicionales de saber si será submuestreo o sobremuestreo, irlos ingresando a una nueva matriz [ 3 ][ 16 ][ 16 ] que saldrá en un archivo .txt y contendrá la información de los componentes R, G,B para llevar al circuito de Tinkercad.
 
 
 \end{enumerate}
@@ -94,9 +100,6 @@ Por último, es importante que el segmento de código necesario para rellenar la
 \caption{Algoritmo inicial.}
 \label{fig:algoritmo}
 \end{figure}
-
-\newpage
-\section{Consideraciones finales} \label{consideracionesfinales}
 
 
 \end{document}
