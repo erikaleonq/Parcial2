@@ -1,0 +1,56 @@
+#include <iostream>
+#include <QImage>;
+
+using namespace std;
+
+int main()
+{
+    string rutaIamgen = "/Users/Ingeniería 365/Desktop/Parcial 2 Info2 2021/alemania.png";
+    QImage imagenOriginal(rutaIamgen.c_str());
+
+    cout<<imagenOriginal.width()<<" x "<<imagenOriginal.height()<<endl;
+    int AltoMatrizAux = imagenOriginal.height()/16;
+    int AnchoMatrizAux = imagenOriginal.width()/16;
+    cout<<AnchoMatrizAux<<" . "<<AltoMatrizAux<<endl;
+    int MatrizRGB[3][imagenOriginal.width()][imagenOriginal.height()];
+    int MatrizAux[AnchoMatrizAux][AltoMatrizAux];
+
+
+    for(int i=0;i<3;i++){
+        for(int indX = 0; indX < imagenOriginal.width(); indX++){
+            for(int indY = 0; indY < imagenOriginal.height(); indY++){
+
+            if(i==0){
+
+               MatrizRGB[i][indX][indY] = imagenOriginal.pixelColor(indX,indY).red();
+               cout<<imagenOriginal.pixelColor(indX,indY).red()<<" ";
+               if(indY==imagenOriginal.width()-1){
+                   cout<<endl;
+               }
+            }
+            else if(i==1){
+                MatrizRGB[i][indX][indY] = imagenOriginal.pixelColor(indX,indY).green();
+            }
+            else{
+
+                MatrizRGB[i][indX][indY] = imagenOriginal.pixelColor(indX,indY).blue();
+            }
+            }
+        }
+    }
+
+    for(int indX = 0; indX < imagenOriginal.width(); indX+= AnchoMatrizAux){
+        for(int indY = 0; indY < imagenOriginal.height(); indY+= AltoMatrizAux){
+
+            for(int i=0;i<AnchoMatrizAux;i++){
+                for(int j=0;j<AltoMatrizAux;j++){
+                    MatrizAux[i][j]=MatrizRGB[1][indX + i][indY+j];
+                }
+            }
+
+
+        }
+    }
+
+    return 0;
+}
