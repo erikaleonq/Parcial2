@@ -7,10 +7,10 @@ using namespace std;
 int main()
 {
     int rojo[17][17]={
-        {1, 6, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 3, 0, 4, 0, 0, 5, 154, 154, 5, 0, 0, 0, 0, 0, 0},
-        {4, 0, 0, 0, 0, 11, 172, 250, 250, 173, 11, 0, 0, 0, 0, 0},
+        {1, 6, 0, 2, 11, 21, 3, 77, 49, 0, 165, 200, 111, 123, 0, 0},
+        {4, 9, 7, 5, 8, 14, 0, 201, 75, 85, 88, 22, 46, 1, 0, 0},
+        {89, 3, 37, 4, 0, 0, 5, 154, 154, 5, 0, 0, 0, 0, 0, 0},
+        {4, 12, 20, 88, 0, 11, 172, 250, 250, 173, 11, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 19, 190, 170, 36, 36, 170, 190, 20, 0, 0, 0, 0},
         {0, 0, 0, 29, 201, 211, 6, 0, 0, 6, 212, 202, 29, 0, 0, 0},
         {0, 0, 41, 212, 255, 169, 95, 104, 60, 0, 102, 255, 212, 41, 0, 0},
@@ -25,26 +25,41 @@ int main()
         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 
     };
+
     //filaux y columnaux van a ser igual a 16/8x16/8= 2x2
     int auxrojo[2][2], newrojo[8][8];
     int sumatoria=0, promedio=0, fila=0, columna=0;
     while(fila<=16 && columna<=16){
-    for(int columna=0, columnaux=0; columna<=1; columna++, columnaux+=2){
-        for(int fila=0; fila<=1; fila++){
-            auxrojo[columna][fila]=rojo[columna][fila];
-            sumatoria=sumatoria+auxrojo[columna][fila];
+    for(int fila=0; fila<=1; fila++){
+        for(int columna=0; columna<=1; columna++){
+            auxrojo[fila][columna]=rojo[fila][columna];
+            sumatoria=sumatoria+auxrojo[fila][columna];
+            rojo[fila][columna] = rojo[fila][columna+2];
             }
+        rojo[fila+2][columna] = rojo[fila][columna+2];
             }
+    int columnaux=0, filaux=0;
+
+    columna+=2;
+    rojo[fila][columna] = rojo[fila][columnaux+4];
+    rojo[fila][columna+1] = rojo[fila][columnaux+5];
+
+    fila++;
+    rojo[fila][columna] = rojo[fila][columnaux+4];
+    rojo[fila][columna+1] = rojo[fila][columnaux+5];
+ 
+
     promedio=sumatoria/4;
-    for(int columnanew=0; columnanew<=7; columnanew++){
+    /*for(int columnanew=0; columnanew<=7; columnanew++){
         for(int filanew=0; filanew<=7; filanew++){
             newrojo[filanew][columnanew]=promedio;
             promedio=0;
 
         }
     }
-
+*/
     }
     return 0;
 
 }
+
