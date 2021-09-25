@@ -1,56 +1,59 @@
 #include <iostream>
-#include <QImage>;
+#include <QImage>
 
 using namespace std;
 
 int main()
 {
-    string rutaIamgen = "/Users/Ingeniería 365/Desktop/Parcial 2 Info2 2021/alemania.png";
-    QImage imagenOriginal(rutaIamgen.c_str());
 
-    cout<<imagenOriginal.width()<<" x "<<imagenOriginal.height()<<endl;
+    string rutaImagen = "../Parcial2/banderas/brasil.png";
+    //Cargo la imagen en la ruta definida por filename
+    QImage imagenOriginal(rutaImagen.c_str());
+
+    //El ancho y alto de la imagen se dividen entre 16, pues es el numero de pixeles que usaremos para representar la bandera en Tinkercad
     int AltoMatrizAux = imagenOriginal.height()/16;
     int AnchoMatrizAux = imagenOriginal.width()/16;
-    cout<<AnchoMatrizAux<<" . "<<AltoMatrizAux<<endl;
+
+    cout<<AnchoMatrizAux<<" x "<<AltoMatrizAux<<endl;
+    //Matriz tridimensional en donde se guardaran las tres matrices RGB
     int MatrizRGB[3][imagenOriginal.width()][imagenOriginal.height()];
     int MatrizAux[AnchoMatrizAux][AltoMatrizAux];
 
+        for(int i=0;i<3;i++){
+            //Se recorre el largo y ancho de la imagen
+            for(int indX = 0; indX < imagenOriginal.width(); indX++){
+                for(int indY = 0; indY < imagenOriginal.height(); indY++){
 
-    for(int i=0;i<3;i++){
-        for(int indX = 0; indX < imagenOriginal.width(); indX++){
-            for(int indY = 0; indY < imagenOriginal.height(); indY++){
-
-            if(i==0){
-
-               MatrizRGB[i][indX][indY] = imagenOriginal.pixelColor(indX,indY).red();
-               cout<<imagenOriginal.pixelColor(indX,indY).red()<<" ";
-               if(indY==imagenOriginal.width()-1){
-                   cout<<endl;
-               }
-            }
-            else if(i==1){
-                MatrizRGB[i][indX][indY] = imagenOriginal.pixelColor(indX,indY).green();
-            }
-            else{
-
-                MatrizRGB[i][indX][indY] = imagenOriginal.pixelColor(indX,indY).blue();
-            }
-            }
-        }
-    }
-
-    for(int indX = 0; indX < imagenOriginal.width(); indX+= AnchoMatrizAux){
-        for(int indY = 0; indY < imagenOriginal.height(); indY+= AltoMatrizAux){
-
-            for(int i=0;i<AnchoMatrizAux;i++){
-                for(int j=0;j<AltoMatrizAux;j++){
-                    MatrizAux[i][j]=MatrizRGB[1][indX + i][indY+j];
+                if(i==0){
+                   MatrizRGB[i][indX][indY] = imagenOriginal.pixelColor(indX,indY).red();
+                   if(indY==imagenOriginal.width()-1){
+                                  }
+                }
+                else if(i==1){
+                    MatrizRGB[i][indX][indY] = imagenOriginal.pixelColor(indX,indY).green();
+                }
+                else{
+                    MatrizRGB[i][indX][indY] = imagenOriginal.pixelColor(indX,indY).blue();
+                }
                 }
             }
-
-
         }
-    }
+
+        int cont=0;
+        while(cont<3){
+        for(int indX = 0; indX < imagenOriginal.width(); indX+= AnchoMatrizAux){
+             for(int indY = 0; indY < imagenOriginal.height(); indY+= AltoMatrizAux){
+
+                 for(int i=0;i<AnchoMatrizAux;i++){
+                 for(int j=0;j<AltoMatrizAux;j++){
+                     MatrizAux[i][j]=MatrizRGB[cont][indX+i][indY+j];
+                     
+                        }
+                    }
+                }
+            }
+        cont++;
+}
 
     return 0;
 }

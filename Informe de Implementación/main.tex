@@ -49,12 +49,34 @@ textheight=23cm}
 En este informe se mostrará y explicará la implementación del problema presentado en el Parcial 2 de la materia Informática II, también se mostrarán las clases implementadas, los módulos del código implementado, la estructura del circuito montado en Tinkercad para la demostración del programa y los problemas que se presentaron durante el desarrollo de la implementación del problema.
 
 \section{Clases implementadas} \label{clases}
+En esta sección se presentarán las clases que se utilizarán para la solución del problema planteado.
 
-\subsection{Citación}
+\subsection{Clase QImage.}
+Esta clase es proporcionada por Qt, sirve para el manejo de datos de imágenes, especialmente para el acceso y manipulación de pixeles. En este caso se utilizan los métodos que nos permiten conocer el número de pixeles a lo ancho y a lo largo de la imagen (.width, .height), para de esta forma obtener su tamaño. También se utiliza el método .pixelColor el cual retorna el color del pixel en unas coordenadas determinadas, en el caso de este problema se utiliza el .pixelColor dentro de un doble ciclo for que nos proporciona cada una de las coordenadas de la imagen, y de esta forma obtenemos la intensidad de color en cada uno de los pixeles de la imagen.
 
 
 
 \section{Módulos del código implementado} \label{Modulos}
+\begin{enumerate}
+\item En esta parte del código se leen cada uno de los pixeles de la imagen para guardar su intensidad de color rojo, verde y azul, se hace uso de una matriz tridimensional llamada MatrizRGB para este propósito.
+
+\begin{figure}[h]
+\includegraphics[width=15cm]{moduloMatrizRGB.png}
+\centering
+\caption{Matriz RGB}
+\label{fig:matrizRGB}
+\end{figure}
+
+\item
+\begin{figure}[h]
+\includegraphics[width=15cm]{matrizaux.png}
+\centering
+\caption{Matriz RGB}
+\label{fig:matrizaux}
+\end{figure}
+
+
+\end{enumerate}
 
 \section{Estructura del circuito} \label{circuito}
 
