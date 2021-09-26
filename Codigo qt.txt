@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cmath>
+#include <fstream>
 #include <QImage>
 
 using namespace std;
@@ -6,9 +8,11 @@ using namespace std;
 int main()
 {
 
-    string rutaImagen = "../Parcial2/banderas/alemania.png";
+    string rutaImagen = "../Parcial2/banderas/brasil.png";
     //Cargo la imagen en la ruta definida por filename
     QImage imagenOriginal(rutaImagen.c_str());
+    ofstream archivoBandera;
+    archivoBandera.open("RGBbandera.txt",ios::out);
 
     //El ancho y alto de la imagen se dividen entre 16, pues es el numero de pixeles que usaremos para representar la bandera en Tinkercad
     int AltoMatrizAux = imagenOriginal.height()/16;
@@ -38,7 +42,7 @@ int main()
         }
 
         int cont=0, sumatoria=0, promedio=0, posPromedio=0;
-        int newMATRIZ[3][16][16], promedios[64];
+        int newMATRIZ[3][16][16], promedios[256];
         while(cont<3){
         for(int indX = 0; indX < imagenOriginal.width(); indX+= AnchoMatrizAux){
              for(int indY = 0; indY < imagenOriginal.height(); indY+= AltoMatrizAux){
@@ -49,7 +53,7 @@ int main()
                         sumatoria=sumatoria+MatrizAux[i][j];
                         }
                     }
-                 promedio=sumatoria/(AltoMatrizAux*AnchoMatrizAux);
+                 promedio=round(sumatoria/(AltoMatrizAux*AnchoMatrizAux));
                  promedios[posPromedio]=promedio;
                  posPromedio++;
                  sumatoria=0;
@@ -57,17 +61,28 @@ int main()
             }
         posPromedio=0;
         //Ciclo para rellenar la nueva matriz de intensidad con tamaño 16x16
+        archivoBandera<<"{";
+        archivoBandera<<endl;
         for(int newfila=0; newfila<16; newfila++){
+            archivoBandera<<"{";
             for(int newcolumna=0; newcolumna<16; newcolumna++){
                 newMATRIZ[cont][newfila][newcolumna]=promedios[posPromedio];
                 posPromedio++;
+                archivoBandera<<newMATRIZ[cont][newfila][newcolumna]<<",";
                 cout<<newMATRIZ[cont][newfila][newcolumna]<<" ";
             }
+            archivoBandera<<"},";
+            archivoBandera<<endl;
+
             cout<<endl;
         }
         cont++;
+        posPromedio=0;
+        archivoBandera<<"},";
+        archivoBandera<<endl;
         cout<<endl;
 }
+        archivoBandera.close();
 
     return 0;
 }
