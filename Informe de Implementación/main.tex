@@ -67,17 +67,38 @@ Esta clase es proporcionada por Qt, sirve para el manejo de datos de imágenes, 
 \label{fig:matrizRGB}
 \end{figure}
 
-\item
+\item Después de tener las matrices de intensidad rojo, verde y azul guardadas en la metriz tridimensional MatrizRGB, procedemos a hacer el submuestreo de cada una de ellas, esto se logrará utilizando un while y un contador que se ocuparán de pasar por las tres matrices. Luego, a cada una de ellas se le irán sacando unas matrices auxiliares, las cuales tendrán un ancho y un largo de el largo y el ancho de las matrices originales dividido entre 16, que es el número de LEDs disponibles para la representación en Tinkercad.
+
 \begin{figure}[h]
 \includegraphics[width=15cm]{matrizaux.png}
 \centering
-\caption{Matriz RGB}
+\caption{Matriz auxiliar.}
 \label{fig:matrizaux}
 \end{figure}
 
+\item Cada que se añade un elemento a la matriz auxiliar, este mismo elemento va sumándose con los demás elementos de la misma matriz para luego sacarle el promedio dividiendo entre la multiplicación del ancho por el alto de la matriz auxiliar. Este promedio calculado se va guardando en un arreglo llamado 'promedios' de tamaño 256.
+
+\begin{figure}[h]
+\includegraphics[width=15cm]{promedio.png}
+\centering
+\caption{Cálculo del promedio.}
+\label{fig:promedio}
+\end{figure}
+
+\item Se recorre newMATRIZ que es la matriz obtenida por medio de promedios de la matriz original para convertirla a tamaño de 16x16, y se va rellenando haciendo uso del arreglo 'promedios', que iniciará en cero e irá aumentando de uno en uno hasta acabar el arreglo de tamaño 256.
+
+En esta misma parte del código se escribe el archivo de texto llamado 'RGBbandera.txt', el cual contendrá la información de las tres matrices de intensidad necesarias para la simulación de Tinkercad.
+
+\begin{figure}[h]
+\includegraphics[width=13cm]{newmatriz.png}
+\centering
+\caption{Nueva matriz 16x16}
+\label{fig:nuevamatriz}
+\end{figure}
 
 \end{enumerate}
 
+\newpage
 \section{Estructura del circuito} \label{circuito}
 
 \begin{figure}[h]
@@ -87,8 +108,9 @@ Esta clase es proporcionada por Qt, sirve para el manejo de datos de imágenes, 
 \label{fig:punto1}
 \end{figure}
 
-
+\newpage
 \section{Problemas presentados} \label{problemas}
+El principal problema presentado fue el encontrar una forma de reducir o amplificar el tamaño de las imágenes a 16x16, que es el tamaño decidido para representar las imágenes mediante las tiras de Neo Pixeles.
 
 
 \end{document}
