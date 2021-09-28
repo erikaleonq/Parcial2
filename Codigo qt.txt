@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <cmath>
 #include <fstream>
 #include <QImage>
@@ -15,45 +15,53 @@ int main()
     archivoBandera.open("RGBbandera.txt",ios::out);
 
     //El ancho y alto de la imagen se dividen entre 16, pues es el numero de pixeles que usaremos para representar la bandera en Tinkercad
+    int anchoOriginal=imagenOriginal.width();
+    int altoOriginal=imagenOriginal.height();
+
     int AltoMatrizAux = imagenOriginal.height()/16;
     int AnchoMatrizAux = imagenOriginal.width()/16;
 
+    cout<<anchoOriginal<<" x "<<altoOriginal<<endl;
     cout<<AnchoMatrizAux<<" x "<<AltoMatrizAux<<endl;
     //Matriz tridimensional en donde se guardaran las tres matrices RGB
-    int MatrizRGB[3][imagenOriginal.width()][imagenOriginal.height()];
-    int MatrizAux[AnchoMatrizAux][AltoMatrizAux];
+    int MatrizRGB[3][altoOriginal][anchoOriginal+1];
+    int MatrizAux[AltoMatrizAux][AnchoMatrizAux];
 
         for(int i=0;i<3;i++){
             //Se recorre el largo y ancho de la imagen
-            for(int indX = 0; indX < imagenOriginal.width(); indX++){
-                for(int indY = 0; indY < imagenOriginal.height(); indY++){
+            for(int indY = 0; indY < altoOriginal; indY++){
+                for(int indX = 0; indX < anchoOriginal; indX++){
 
                 if(i==0){
-                   MatrizRGB[i][indX][indY] = imagenOriginal.pixelColor(indX,indY).red();
+                   MatrizRGB[i][indY][indX] = imagenOriginal.pixelColor(indX,indY).red();
+                    //cout<<MatrizRGB[i][indY][indX]<<",";
                 }
-                else if(i==1){
-                    MatrizRGB[i][indX][indY] = imagenOriginal.pixelColor(indX,indY).green();
+               else if(i==1){
+                    MatrizRGB[i][indY][indX] = imagenOriginal.pixelColor(indX,indY).green();
                 }
                 else{
-                    MatrizRGB[i][indX][indY] = imagenOriginal.pixelColor(indX,indY).blue();
+                    MatrizRGB[i][indY][indX] = imagenOriginal.pixelColor(indX,indY).blue();
                 }
-                }
+                }cout<<endl;
             }
+            cout<<endl;
+            cout<<endl;
         }
 
         int cont=0, sumatoria=0, promedio=0, posPromedio=0;
         int newMATRIZ[3][16][16], promedios[256];
         while(cont<3){
-        for(int indX = 0; indX < imagenOriginal.width(); indX+= AnchoMatrizAux){
-             for(int indY = 0; indY < imagenOriginal.height(); indY+= AltoMatrizAux){
+        for(int indY = 0; indY < altoOriginal; indY+= AltoMatrizAux){
+             for(int indX = 0; indX < anchoOriginal; indX+= AnchoMatrizAux){
 
-                 for(int i=0;i<AnchoMatrizAux;i++){
-                 for(int j=0;j<AltoMatrizAux;j++){
-                     MatrizAux[i][j]=MatrizRGB[cont][indX+i][indY+j];
+                 for(int i=0;i<AltoMatrizAux;i++){
+                 for(int j=0;j<AnchoMatrizAux;j++){
+                     MatrizAux[i][j]=MatrizRGB[cont][indY+i][indX+j];
                         sumatoria=sumatoria+MatrizAux[i][j];
                         }
                     }
                  promedio=round(sumatoria/(AltoMatrizAux*AnchoMatrizAux));
+
                  promedios[posPromedio]=promedio;
                  posPromedio++;
                  sumatoria=0;
