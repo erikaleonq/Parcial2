@@ -8,7 +8,7 @@ using namespace std;
 int main()
 {
 
-    string rutaImagen = "/Users/Ingeniería 365/Desktop/Parcial 2 Info2 2021/Imagen8.jpg";
+    string rutaImagen = "/Users/Ingeniería 365/Desktop/Parcial 2 Info2 2021/Imagen5.jpg";
     //Cargo la imagen en la ruta definida por filename
     QImage imagenOriginal(rutaImagen.c_str());
     ofstream archivoBandera;
@@ -51,7 +51,7 @@ int main()
         int cont=0, sumatoria=0, promedio=0, posPromedio=0;
         int newMATRIZ[3][16][16], promedios[256];
 
-        if(anchoOriginal>=16 && altoOriginal>=16){
+
         while(cont<3){
         for(int indY = 0; indY < altoOriginal; indY+= AltoMatrizAux){
              for(int indX = 0; indX < anchoOriginal; indX+= AnchoMatrizAux){
@@ -103,68 +103,9 @@ int main()
         cont++;
         archivoBandera<<endl;
         cout<<endl;
-}}
-        else{
-            int AltoMatrizAux1 = 16/imagenOriginal.height();
-            int AnchoMatrizAux1 = 16/imagenOriginal.width();
-            int MatrizAux1[AltoMatrizAux1][AnchoMatrizAux1];
-
-            while(cont<3){
-            for(int indY = 0; indY < altoOriginal; indY+= AltoMatrizAux1){
-                 for(int indX = 0; indX < anchoOriginal; indX+= AnchoMatrizAux1){
-
-                     for(int i=0;i<AltoMatrizAux1;i++){
-                     for(int j=0;j<AnchoMatrizAux1;j++){
-                         MatrizAux1[i][j]=MatrizRGB[cont][indY][indX];
-                            sumatoria=sumatoria+MatrizAux1[i][j];
-                            }
-                        }
-                     promedio=round(sumatoria/(AltoMatrizAux1*AnchoMatrizAux1));
-
-                     promedios[posPromedio]=promedio;
-                     posPromedio++;
-                     sumatoria=0;
-                    }
-                }
-            posPromedio=0;
-            //Ciclo para rellenar la nueva matriz de intensidad con tamaño 16x16
-            archivoBandera<<"{";
-            archivoBandera<<endl;
-            for(int newfila=0; newfila<16; newfila++){
-                archivoBandera<<"{";
-                for(int newcolumna=0; newcolumna<16; newcolumna++){
-                    newMATRIZ[cont][newfila][newcolumna]=promedios[posPromedio];
-                    posPromedio++;
-                    if(newcolumna<15){
-                        archivoBandera<<newMATRIZ[cont][newfila][newcolumna]<<",";}
-                    else if(newcolumna==15){
-                        archivoBandera<<newMATRIZ[cont][newfila][newcolumna];
-                    }
-                    cout<<newMATRIZ[cont][newfila][newcolumna]<<" ";
-                }
-                if(newfila<15){
-                    archivoBandera<<"},";}
-                else if(newfila==15){
-                    archivoBandera<<"}";
-                }
-                archivoBandera<<endl;
-
-                cout<<endl;
-            }
-            posPromedio=0;
-            if(cont<2){
-                archivoBandera<<"},";}
-            else if(cont==2){
-                archivoBandera<<"}";
-            }
-            cont++;
-            archivoBandera<<endl;
-            cout<<endl;
-    }
-        }
+}
         archivoBandera.close();
 
     return 0;
 }
-
 
