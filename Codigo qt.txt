@@ -68,17 +68,29 @@ int main()
             for(int newcolumna=0; newcolumna<16; newcolumna++){
                 newMATRIZ[cont][newfila][newcolumna]=promedios[posPromedio];
                 posPromedio++;
-                archivoBandera<<newMATRIZ[cont][newfila][newcolumna]<<",";
+                if(newcolumna<15){
+                    archivoBandera<<newMATRIZ[cont][newfila][newcolumna]<<",";}
+                else if(newcolumna==15){
+                    archivoBandera<<newMATRIZ[cont][newfila][newcolumna];
+                }
                 cout<<newMATRIZ[cont][newfila][newcolumna]<<" ";
             }
-            archivoBandera<<"},";
+            if(newfila<15){
+                archivoBandera<<"},";}
+            else if(newfila==15){
+                archivoBandera<<"}";
+            }
             archivoBandera<<endl;
 
             cout<<endl;
         }
-        cont++;
         posPromedio=0;
-        archivoBandera<<"},";
+        if(cont<2){
+            archivoBandera<<"},";}
+        else if(cont==2){
+            archivoBandera<<"}";
+        }
+        cont++;
         archivoBandera<<endl;
         cout<<endl;
 }
