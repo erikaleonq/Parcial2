@@ -58,6 +58,17 @@ Esta clase es proporcionada por Qt, sirve para el manejo de datos de imágenes, 
 
 \section{Módulos del código implementado} \label{Modulos}
 \begin{enumerate}
+\item Se incluye el código para que el usuario ingrese la ruta del archivo por consola y de esta forma cargar la imagen que se encuentra en la misma con ayuda de la clase QImage. También se crea el archivo de escritura que se usará más adelante para sacar la información del procesamiento de la imagen.
+Se declara el valor del alto y ancho de la imagen cargada anteriormente y el alto y el ancho de la matriz auxiliar que se usará para convertir la matriz original en una de 16x16.
+
+\begin{figure}[h]
+\includegraphics[width=10cm]{declaaracion.png}
+\centering
+\caption{Declaración de algunas variables}
+\label{fig:declaracion}
+\end{figure}
+
+
 \item En esta parte del código se leen cada uno de los pixeles de la imagen para guardar su intensidad de color rojo, verde y azul, se hace uso de una matriz tridimensional llamada MatrizRGB para este propósito.
 
 \begin{figure}[h]
@@ -78,6 +89,7 @@ Esta clase es proporcionada por Qt, sirve para el manejo de datos de imágenes, 
 
 \item Cada que se añade un elemento a la matriz auxiliar, este mismo elemento va sumándose con los demás elementos de la misma matriz para luego sacarle el promedio dividiendo entre la multiplicación del ancho por el alto de la matriz auxiliar. Este promedio calculado se va guardando en un arreglo llamado 'promedios' de tamaño 256.
 
+\newpage
 \begin{figure}[h]
 \includegraphics[width=15cm]{promedio.png}
 \centering
@@ -105,12 +117,113 @@ En esta misma parte del código se escribe el archivo de texto llamado 'RGBbande
 \includegraphics[width=15cm]{LEDs16x16.png}
 \centering
 \caption{Montaje de la matriz de LEDs de 16x16}
-\label{fig:punto1}
+\label{fig:montaje}
 \end{figure}
 
-\newpage
+
 \section{Problemas presentados} \label{problemas}
 El principal problema presentado fue el encontrar una forma de reducir o amplificar el tamaño de las imágenes a 16x16, que es el tamaño decidido para representar las imágenes mediante las tiras de Neo Pixeles.
 
+No se hacía un submuestreo correcto ya que estábamos tomando en el código los componentes RGB de la imagen columna por columna y los estábamos guardando fila por fila, por lo cual no quedaban matrices con los componentes RGB correctas para se simulados en la plataforma de Tinkercad.
 
+
+Teníamos problemas en la lectura de la matriz 16 x16 en tinkercad y se solucionó poniendo la matriz 16 x 17.
+
+\section{Manual de usuario} \label{manual}
+Siga los siguientes pasos para un correcto funcionamiento del programa.
+\begin{enumerate}
+    \item Ubique la carpeta en su computador en donde se guarda el programa de qt.
+    
+\begin{figure}[h]
+\includegraphics[width=12cm]{carpeta.png}
+\centering
+\caption{Ubicar la carpeta en donde se guarda el programa}
+\label{fig:carpeta}
+\end{figure}
+
+\newpage
+
+    \item Cree una carpeta para guardar en ella las imágenes de las banderas que posteriormente se procesarán.
+\begin{figure}[h]
+\includegraphics[width=12cm]{carpetabanderas.png}
+\centering
+\caption{Crear la carpeta en donde se guardarán las imágenes}
+\label{fig:carpetabanderas}
+\end{figure}
+    
+    \item Abra el programa y presione el botón ubicado en la parte inferior izquierda de su pantalla encerrado y señalado en rojo que se muestra en la figura \ref{fig:run} para iniciar el programa, o la combinación de teclas Ctrl+R.
+
+\begin{figure}[h]
+\includegraphics[width=7cm]{run.png}
+\centering
+\caption{Manual de usuario: Primer paso.}
+\label{fig:run}
+\end{figure}
+
+\newpage
+    \item Después de realizar el paso anterior, una ventana emergente como la que se muestra en la figura \ref{fig:paso2} se mostrará en la pantalla y será el lugar en donde se ingrese el único dato necesario para el programa. 
+    El dato a ingresar es la ruta de la imagen y se muestra un ejemplo de cómo debe ser escrito.
+    
+\begin{figure}[h]
+\includegraphics[width=15cm]{paso2.png}
+\centering
+\caption{Ingreso de datos.}
+\label{fig:paso2}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=15cm]{ejempaso2.png}
+\centering
+\caption{Ejemplo de ingreso de datos.}
+\label{fig:ejempaso2}
+\end{figure}
+
+\newpage
+\item Después de ingresar la ruta de la imagen el programa procesará la imagen y creará un archivo de texto en donde se guardará la información que se tiene que incluir en el código de Tinkercad.
+
+El archivo de texto se guardará en una carpeta en la que su nombre comienza con 'build-' y sigue con el nombre de la carpeta en donde se guarda el programa, en este ejemplo 'Parcial2'.
+
+\begin{figure}[h]
+\includegraphics[width=15cm]{txt.png}
+\centering
+\caption{Ejemplo de ingreso de datos.}
+\label{fig:txt}
+\end{figure}
+ \newpage
+\item Se abre el archivo RGBbandera.txt y se copia todo su contenido.
+
+\begin{figure}[h]
+\includegraphics[width=10cm]{txtabierto.png}
+\centering
+\caption{Archivo .txt para abrir.}
+\label{fig:txtabierto}
+\end{figure}
+
+\item Se abre en el navegador el siguiente link que nos llevará al circuito montado en Tinkercad: https://www.tinkercad.com/things/bFvlFZ9hjM0
+
+Posterior a esto se abre la ventana de código y en la sección demarcada con '//COPIAR TEXTO DESDE  ESTE PUNTO' se copia el contenido del archivo RGBbanderas.txt.
+
+\begin{figure}[h]
+\includegraphics[width=10cm]{tinkercad.png}
+\centering
+\caption{Tinkercad.}
+\label{fig:tinkercad}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=10cm]{ejemtinkercad.png}
+\centering
+\caption{Ejemplo de la información copiada del archivo.}
+\label{fig:ejemtinkercad}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=10cm]{ejem2.png}
+\centering
+\caption{Ejemplo de la información copiada del archivo.}
+\label{fig:ejem2}
+\end{figure}
+
+
+\end{enumerate}
 \end{document}
