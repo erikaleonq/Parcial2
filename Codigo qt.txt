@@ -8,7 +8,7 @@ using namespace std;
 int main()
 {
 
-    string rutaImagen = "../Parcial2/banderas/brasil.png";
+    string rutaImagen = "/Users/Ingeniería 365/Desktop/Parcial 2 Info2 2021/Imagen8.jpg";
     //Cargo la imagen en la ruta definida por filename
     QImage imagenOriginal(rutaImagen.c_str());
     ofstream archivoBandera;
@@ -21,7 +21,7 @@ int main()
     int AltoMatrizAux = imagenOriginal.height()/16;
     int AnchoMatrizAux = imagenOriginal.width()/16;
 
-    cout<<anchoOriginal<<" x "<<altoOriginal<<endl;
+    cout<<anchoOriginal<<" x "<<altoOriginal<<","<<endl;
     cout<<AnchoMatrizAux<<" x "<<AltoMatrizAux<<endl;
     //Matriz tridimensional en donde se guardaran las tres matrices RGB
     int MatrizRGB[3][altoOriginal][anchoOriginal+1];
@@ -34,7 +34,7 @@ int main()
 
                 if(i==0){
                    MatrizRGB[i][indY][indX] = imagenOriginal.pixelColor(indX,indY).red();
-                    //cout<<MatrizRGB[i][indY][indX]<<",";
+                    cout<<MatrizRGB[i][indY][indX]<<",";
                 }
                else if(i==1){
                     MatrizRGB[i][indY][indX] = imagenOriginal.pixelColor(indX,indY).green();
@@ -110,13 +110,13 @@ int main()
             int MatrizAux1[AltoMatrizAux1][AnchoMatrizAux1];
 
             while(cont<3){
-            for(int indY = 0; indY < altoOriginal; indY+= AltoMatrizAux){
-                 for(int indX = 0; indX < anchoOriginal; indX+= AnchoMatrizAux){
+            for(int indY = 0; indY < altoOriginal; indY+= AltoMatrizAux1){
+                 for(int indX = 0; indX < anchoOriginal; indX+= AnchoMatrizAux1){
 
                      for(int i=0;i<AltoMatrizAux1;i++){
                      for(int j=0;j<AnchoMatrizAux1;j++){
                          MatrizAux1[i][j]=MatrizRGB[cont][indY][indX];
-                            sumatoria=sumatoria+MatrizAux[i][j];
+                            sumatoria=sumatoria+MatrizAux1[i][j];
                             }
                         }
                      promedio=round(sumatoria/(AltoMatrizAux1*AnchoMatrizAux1));
@@ -166,3 +166,5 @@ int main()
 
     return 0;
 }
+
+
